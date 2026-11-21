@@ -1,0 +1,30 @@
+# --- generated: rebuild with `node scripts/build.mjs` ---
+compositions/
+index.html
+renders/
+.hyperframes/
+node_modules/
+
+# --- copyright: the song and its lyrics are not ours to share ---
+assets/audio/
+
+# --- third-party photo used only as a pose reference ---
+assets/ref/pinky_photo.jpg
+assets/ref/8b71b521d3b30af1fe5e1ac62bcd2994.png
+
+# --- proprietary font subset (Consolas); see README > 字体说明 ---
+assets/fonts/gq-mono.woff2
+
+# --- Codex logs and per-image prompt copies (contain local paths) ---
+*.log
+*.prompt.txt
+
+# --- raw and intermediate image rounds (large; the keyed cutouts are kept) ---
+assets/poses/raw/
+assets/poses/redo/
+assets/design/r1/
+assets/design/r2/
+
+# --- big PNG duplicates; the JPGs next to them are kept ---
+covers/*.png
+styleframe/*.png

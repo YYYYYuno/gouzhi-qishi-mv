@@ -1,0 +1,154 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// Style frame P: the whole world in the same flat screen-print language as the characters.
+// Only flat hard-edged colour shapes, a strict palette, no gradients. Characters are GPT cutouts.
+// Query: ?claude=..&ds=..&ch=fx,fy&dh=fx,fy   (hand anchors as fractions of each cutout)
+const q = new URLSearchParams(location.search);
+const W = 1920, H = 1080, HZ = 650;
+const c = document.getElementById('c'), g = c.getContext('2d');
+const P = {
+  cream: '#F0EEE6', apricot: '#F2C6A8', terra: '#D97757', espresso: '#3B2620',
+  peri: '#B8C3F7', blue: '#4D6BFE', navy: '#1B1F4B', gold: '#F3C969',
+  night: '#17151A', night2: '#201D24', night3: '#2B2730', ink: '#0F0E12',
+};
+let seed = 5; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const load = s => new Promise(r => { if (!s) return r(null); const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = s; });
+const rect = (col, x, y, w, h) => { g.fillStyle = col; g.fillRect(x, y, w, h); };
+function poly(col, pts) { g.fillStyle = col; g.beginPath(); g.moveTo(pts[0], pts[1]); for (let i = 2; i < pts.length; i += 2) g.lineTo(pts[i], pts[i + 1]); g.closePath(); g.fill(); }
+
+function sky() {
+  rect(P.night, 0, 0, W, HZ);
+  // flat cloud bands, stepped, no gradient
+  const band = (col, y, amp, ph) => { g.fillStyle = col; g.beginPath(); g.moveTo(0, HZ);
+    for (let x = 0; x <= W; x += 40) g.lineTo(x, y + Math.round(Math.sin(x * 0.006 + ph) * amp + Math.sin(x * 0.017 + ph * 2) * amp * 0.4));
+    g.lineTo(W, HZ); g.closePath(); g.fill(); };
+  // the big moon = the poster circle, behind DeepSeek
+  g.fillStyle = P.cream; g.beginPath(); g.arc(1330, 360, 250, 0, Math.PI * 2); g.fill();
+  band(P.night2, 520, 22, 1.2); band(P.night3, 585, 14, 3.1);
+  // stars: tiny 4-point sparks like the posters' corner symbol
+  for (let i = 0; i < 34; i++) { const x = rnd() * W, y = 30 + rnd() * 420, s = 2 + rnd() * 5;
+    if (Math.hypot(x - 1330, y - 360) < 270) continue;
+    poly(i % 7 === 0 ? P.apricot : 'rgba(240,238,230,.75)', [x, y - s, x + s * .3, y - s * .3, x + s, y, x + s * .3, y + s * .3, x, y + s, x - s * .3, y + s * .3, x - s, y, x - s * .3, y - s * .3]); }
+}
+
+function sea() {
+  rect(P.navy, 0, HZ, W, H - HZ);
+  // flat horizontal stripes, denser near the horizon
+  for (let i = 0; i < 70; i++) { const t = rnd(), y = HZ + 8 + Math.pow(t, 1.5) * (H - HZ - 10);
+    const len = 40 + rnd() * 220 * (0.6 + (y - HZ) / 300), x = rnd() * W, th = 2 + Math.floor((y - HZ) / 150);
+    rect(i % 3 ? '#262C66' : '#2F3779', x, y, len, th); }
+  // moon reflection: broken cream / periwinkle dashes under the moon
+  for (let i = 0; i < 26; i++) { const y = HZ + 14 + i * 15, spread = 140 - i * 2.5;
+    for (let k = 0; k < 3; k++) { const w = 30 + rnd() * spread, x = 1330 - spread + rnd() * spread * 2 - w / 2;
+      rect(i < 8 ? P.cream : P.peri, x, y, w, i < 8 ? 3 : 2); } }
+}
+
+function shelf(x, y, w, h) {
+  rect(P.espresso, x, y, w, h);
+  const rowH = 44;
+  for (let ry = y + 8; ry + rowH - 6 < y + h; ry += rowH) {
+    let bx = x + 6;
+    while (bx < x + w - 8) { const bw = 7 + Math.floor(rnd() * 11), r = rnd(), bh = rowH - 12 - Math.floor(rnd() * 10);
+      rect(r > .72 ? P.terra : r > .38 ? P.apricot : P.cream, bx, ry + (rowH - 8 - bh), bw - 3, bh); bx += bw; }
+    rect(P.ink, x, ry + rowH - 8, w, 5);
+  }
+}
+
+function library() {
+  const x0 = -20, x1 = 760, top = -10, base = HZ + 4;
+  rect(P.ink, x0, top, x1 - x0, base - top);
+  for (const px of [60, 240, 520, 700]) rect('#1A1820', px, top, 24, base - top);
+  rect('#1A1820', x0, 150, x1 - x0, 10); rect('#1A1820', x0, 56, x1 - x0, 6);
+  for (const wx of [108, 568]) { rect(P.terra, wx - 8, 192, 116, 186); shelf(wx, 200, 100, 170); }
+  // arched door, lit: flat apricot frame, shelves inside
+  const dx = 290, dw = 220, dTop = 236;
+  g.save(); g.beginPath(); g.moveTo(dx - 10, base); g.lineTo(dx - 10, dTop + dw / 2); g.arc(dx + dw / 2, dTop + dw / 2, dw / 2 + 10, Math.PI, 0); g.lineTo(dx + dw + 10, base); g.closePath(); g.fillStyle = P.terra; g.fill();
+  g.beginPath(); g.moveTo(dx, base); g.lineTo(dx, dTop + dw / 2); g.arc(dx + dw / 2, dTop + dw / 2, dw / 2, Math.PI, 0); g.lineTo(dx + dw, base); g.closePath(); g.clip();
+  // dark interior with dim spines, so the cream/terracotta figure in the doorway stays readable
+  rect('#2A1913', dx, dTop, dw, base - dTop);
+  for (let ry = dTop + 30; ry < base - 40; ry += 44) { let bx = dx + 12;
+    while (bx < dx + dw - 14) { const bw = 7 + Math.floor(rnd() * 11), bh = 26 + Math.floor(rnd() * 8);
+      rect(rnd() > .5 ? '#4A2E22' : '#5C3A2B', bx, ry + 34 - bh, bw - 3, bh); bx += bw; }
+    rect('#1A0F0B', dx, ry + 34, dw, 5); }
+  g.restore();
+  // terrace
+  rect(P.ink, x0, base - 6, x1 - x0 + 140, 16); rect(P.night3, x0, base - 8, x1 - x0 + 140, 3);
+  // flat terracotta reflection of the door
+  for (let i = 0; i < 22; i++) { const y = base + 18 + i * 13, w = dw * (0.95 - i * 0.03) * (0.6 + rnd() * 0.4);
+    rect(i < 9 ? P.terra : P.espresso, dx + dw / 2 - w / 2 + (rnd() - .5) * 24, y, w, 3); }
+}
+
+function drawCut(img, cx, footY, height, clipY) {
+  if (!img) return null;
+  const s = height / img.height, w = img.width * s;
+  g.save(); if (clipY) { g.beginPath(); g.rect(0, 0, W, clipY); g.clip(); }
+  g.drawImage(img, cx - w / 2, footY - height, w, height); g.restore();
+  return { x: cx - w / 2, y: footY - height, w, h: height };
+}
+
+function ripples(x, y) {
+  g.save(); g.strokeStyle = P.peri; g.lineWidth = 3;
+  for (let i = 0; i < 3; i++) { g.setLineDash([60 + i * 30, 26 + i * 14]); g.beginPath(); g.ellipse(x, y + i * 4, 170 + i * 70, 12 + i * 6, 0, 0, Math.PI * 2); g.stroke(); }
+  g.restore();
+}
+
+function thread(x1, y1, x2, y2) {
+  // flat gold line with a flat wider under-stroke (no blur)
+  g.save(); g.lineCap = 'round';
+  const path = () => { g.beginPath(); g.moveTo(x1, y1); g.bezierCurveTo(x1 + 220, y1 + 150, x2 - 240, y2 + 170, x2, y2); };
+  g.strokeStyle = 'rgba(243,201,105,.28)'; g.lineWidth = 12; path(); g.stroke();
+  g.strokeStyle = P.gold; g.lineWidth = 3.5; path(); g.stroke();
+  for (let i = 0; i < 22; i++) { const t = rnd(), mt = 1 - t;
+    const px = mt ** 3 * x1 + 3 * mt * mt * t * (x1 + 220) + 3 * mt * t * t * (x2 - 240) + t ** 3 * x2;
+    const py = mt ** 3 * y1 + 3 * mt * mt * t * (y1 + 150) + 3 * mt * t * t * (y2 + 170) + t ** 3 * y2;
+    const s = 2 + rnd() * 5, ox = px + (rnd() - .5) * 50, oy = py + (rnd() - .5) * 40;
+    poly(P.gold, [ox, oy - s, ox + s * .3, oy - s * .3, ox + s, oy, ox + s * .3, oy + s * .3, ox, oy + s, ox - s * .3, oy + s * .3, ox - s, oy, ox - s * .3, oy - s * .3]); }
+  g.restore();
+}
+
+function ui() {
+  g.save();
+  const bx = 712, by = 64;
+  rect('rgba(15,14,18,.88)', bx, by, 430, 118); rect(P.terra, bx, by, 6, 118);
+  g.font = '24px Consolas, monospace';
+  g.fillStyle = '#8b8790'; g.fillText('>', bx + 26, by + 44); g.fillStyle = P.cream; g.fillText('const 约定 = new Promise(…)', bx + 50, by + 44);
+  g.fillStyle = '#8b8790'; g.fillText('<', bx + 26, by + 90); g.fillStyle = P.gold; g.fillText('Promise {<pending>}', bx + 50, by + 90);
+  // counter
+  g.textAlign = 'right'; g.font = '22px "Microsoft YaHei", sans-serif'; g.fillStyle = P.cream; g.fillText('第 1 次初次见面', W - 70, 92);
+  rect(P.blue, W - 250, 106, 180, 4);
+  // thinking chip (flat)
+  g.textAlign = 'left';
+  g.font = '22px "Microsoft YaHei", sans-serif';
+  const label = '已深度思考（用时 37 秒）', tw = g.measureText(label).width, cw = 48 + tw + 46;
+  const tx = W - 60 - cw, ty = 190; g.fillStyle = P.cream; g.beginPath(); g.roundRect(tx, ty, cw, 52, 26); g.fill();
+  g.fillStyle = P.blue; g.beginPath(); g.arc(tx + 28, ty + 26, 9, 0, 7); g.fill();
+  g.fillStyle = P.navy; g.fillText(label, tx + 48, ty + 34);
+  const vx = tx + 48 + tw + 16;
+  g.strokeStyle = P.navy; g.lineWidth = 2.5; g.beginPath(); g.moveTo(vx, ty + 22); g.lineTo(vx + 7, ty + 29); g.lineTo(vx + 14, ty + 22); g.stroke();
+  g.restore();
+}
+
+function paper() {
+  // very light print grain so flat fields don't band in video
+  const id = g.getImageData(0, 0, W, H), d = id.data;
+  for (let i = 0; i < d.length; i += 4) { const n = (Math.random() - .5) * 7; d[i] += n; d[i + 1] += n; d[i + 2] += n; }
+  g.putImageData(id, 0, 0);
+}
+
+(async () => {
+  const [ci, di] = await Promise.all([load(q.get('claude')), load(q.get('ds'))]);
+  sky(); sea(); library();
+  const ch = (q.get('ch') || '0.75,0.52').split(',').map(Number), dh = (q.get('dh') || '0.62,0.30').split(',').map(Number);
+  const cr = drawCut(ci, 400, HZ, 470);
+  ripples(1330, HZ + 26);
+  const dr = drawCut(di, 1330, HZ + 330, 740, HZ + 30);
+  if (cr && dr) thread(cr.x + cr.w * ch[0], cr.y + cr.h * ch[1], dr.x + dr.w * dh[0], dr.y + dr.h * dh[1]);
+  ui(); paper();
+  document.title = 'ready';
+})();
+</script>
+</body></html>

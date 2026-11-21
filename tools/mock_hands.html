@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+<script src="../src/lib/mv.js"></script>
+<script src="../src/lib/gx.js"></script>
+<script src="../src/lib/world.js"></script>
+</head><body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// Preview a pinky-swear cutout in the S22/S57 layout: library dark above the water line, the sea below,
+// the image rotated about its hook point. ?img=../assets/poses/redo/cut/H01m.png&ax=0.5&ay=0.5&rot=0.45&w=2400&warm=0
+var q = new URLSearchParams(location.search), P = GX.P, W = 1920, H = 1080;
+var c = document.getElementById('c'), g = c.getContext('2d');
+GX.S = { canvas: function (w, h) { var k = document.createElement('canvas'); k.width = w; k.height = h; return k; } };
+var img = new Image();
+img.onload = function () {
+  var lx = 960, ly = 540, warm = +(q.get('warm') || 0);
+  GX.rect(g, warm ? P.apricot : '#2A1913', 0, 0, W, ly); GX.rect(g, warm ? P.gold : P.navy, 0, ly, W, H - ly);
+  var r = MV.rng(4);
+  for (var i = 0; i < 26; i++) { var y = ly + 20 + r() * (H - ly), x = r() * W; GX.rect(g, warm ? P.cream : (i % 2 ? P.sea2 : P.sea3), x, y, 80 + r() * 200, 3); }
+  GX.rect(g, warm ? P.cream : P.peri, 0, ly - 2, W, 5);
+  GX.cut(g, img, { x: lx, y: ly, w: +(q.get('w') || 2400), ax: +(q.get('ax') || 0.5), ay: +(q.get('ay') || 0.5), rot: +(q.get('rot') || 0) });
+  if (q.get('ring')) { g.save(); g.globalAlpha = 0.8; GX.ring(g, lx, ly, 70, 6, P.gold); g.restore(); }
+  document.title = 'ready';
+};
+img.src = q.get('img');
+</script></body></html>

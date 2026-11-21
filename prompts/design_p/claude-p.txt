@@ -1,0 +1,8 @@
+REFERENCES: Image 1 is this exact flat poster rendering of Xiao Ke (Claude). Copy its rendering technique AND her face, hair and colours exactly (ignore its circle, its lettering and its spark symbol). Image 2 is her full character sheet. Use it for the full-length outfit (skirt layers, sleeves, boots), simplified into flat shapes the way Image 1 simplifies the top half.
+CHARACTER: Xiao Ke. A young woman, calm and gentle, with a faint smile. Very long straight hair. An orange chrysanthemum-like flower hair ornament with a dark ribbon and a tassel. A high ruffled collar with a dark cravat and a flower brooch, a cream capelet with a flower emblem, a dark corset belt with a thin chain, a long layered skirt with an orange front panel and embroidered hem, and lace-up heeled boots. She carries her dark leather book.
+PALETTE (exactly 4 colours):
+- warm cream #F0EEE6 (skin, blouse, capelet, skirt, highlights)
+- pale apricot #F2C6A8 (light shadows on the cream parts, flower centres)
+- Claude terracotta orange #D97757 (hair, flowers, the orange skirt panel, embroidery)
+- deep espresso brown #3B2620 (darkest shadows, corset belt, cravat, ribbons, book, boot laces, eyes)
+POSE: full body, standing, three-quarter view facing slightly to the left. She holds the book against her chest with one arm. The other hand is relaxed and slightly open, as if about to reach out to someone. The whole figure is visible from the top of the hair to the boots.

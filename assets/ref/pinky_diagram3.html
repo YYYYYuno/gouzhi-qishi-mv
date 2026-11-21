@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#fff;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c" width="1536" height="1024"></canvas>
+<script>
+// Pose diagram v3: two people facing each other, both using their RIGHT hand, seen from the side.
+// LEFT hand: we see its PALM side (thumb folded across the curled fingertips).
+// RIGHT hand: we see its BACK (smooth back of the hand, a row of knuckles; the thumb is on the far side, only its tip peeks over the top).
+// Both little fingers come out of the BOTTOM of the fists and hook together in the small gap.
+var c = document.getElementById('c'), g = c.getContext('2d');
+var INK = '#2B2B2B', SKIN = '#F4F1EA', SHADE = '#DCD6CA', LW = 6;
+g.fillStyle = '#FFFFFF'; g.fillRect(0, 0, 1536, 1024);
+function rr(x, y, w, h, r) { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+function fillStroke(fill) { g.fillStyle = fill; g.fill(); g.lineWidth = LW; g.strokeStyle = INK; g.stroke(); }
+function tube(fn, w, fill) { g.lineCap = 'round'; g.lineJoin = 'round'; [[w + LW * 2, INK], [w, fill]].forEach(function (s) { g.beginPath(); fn(); g.lineWidth = s[0]; g.strokeStyle = s[1]; g.stroke(); }); }
+function line(fn, w) { g.lineCap = 'round'; g.beginPath(); fn(); g.lineWidth = w || LW; g.strokeStyle = INK; g.stroke(); }
+function sleeve(dir, cy, col) { g.save(); g.scale(dir, 1); rr(-900, cy - 92, 640, 184, 10); fillStroke(col); rr(-292, cy - 104, 104, 208, 16); fillStroke('#CFCFCF'); g.restore(); }
+
+// ---- LEFT: palm side of a right fist, fingers toward +x ----
+function palmFist(cx, cy) {
+  g.save(); g.translate(cx, cy);
+  sleeve(1, 0, '#8A8A8A');
+  // palm + heel
+  g.beginPath(); g.moveTo(-200, -96); g.bezierCurveTo(-120, -112, -20, -104, 40, -88); g.lineTo(60, 96);
+  g.bezierCurveTo(0, 116, -120, 112, -200, 96); g.closePath(); fillStroke(SKIN);
+  // three curled fingers seen from the palm: index, middle, ring - their tips curl back toward the palm
+  [[-92, 50], [-40, 52], [14, 50]].forEach(function (f) {
+    g.beginPath(); g.moveTo(-10, f[0]); g.lineTo(80, f[0]); g.arcTo(118, f[0], 118, f[0] + f[1] / 2, f[1] / 2); g.arcTo(118, f[0] + f[1], 80, f[0] + f[1], f[1] / 2);
+    g.lineTo(-10, f[0] + f[1]); g.quadraticCurveTo(-34, f[0] + f[1] / 2, -10, f[0]); g.closePath(); fillStroke(SKIN);
+    line(function () { g.moveTo(8, f[0] + 8); g.quadraticCurveTo(-6, f[0] + f[1] / 2, 8, f[0] + f[1] - 8); }, 4); // fingertip pad
+  });
+  // the thumb, folded diagonally ACROSS the front of the index and middle fingers
+  tube(function () { g.moveTo(-170, -70); g.quadraticCurveTo(-60, -66, 40, -22); }, 50, SKIN);
+  line(function () { g.moveTo(-150, 40); g.quadraticCurveTo(-110, 70, -60, 80); }, 4); // palm crease
+  g.restore();
+}
+// ---- RIGHT: back of a right fist, fingers toward -x ----
+function backFist(cx, cy) {
+  g.save(); g.translate(cx, cy);
+  sleeve(-1, 0, '#3A3A3A');
+  // back of the hand
+  g.beginPath(); g.moveTo(200, -100); g.bezierCurveTo(120, -114, 20, -112, -40, -96); g.lineTo(-56, 100);
+  g.bezierCurveTo(0, 116, 120, 112, 200, 98); g.closePath(); fillStroke(SKIN);
+  // thumb tip only, peeking over the top on the far side
+  g.beginPath(); g.moveTo(-10, -98); g.quadraticCurveTo(-60, -132, -96, -112); g.quadraticCurveTo(-90, -96, -40, -92); g.closePath(); fillStroke(SHADE);
+  // knuckle row: the folded index, middle and ring fingers seen from the back (no fingertips visible)
+  [[-94, 52], [-40, 52], [14, 50]].forEach(function (f) { rr(-120, f[0], 120, f[1], f[1] / 2); fillStroke(SKIN); });
+  // knuckle bumps + tendons on the back of the hand
+  [-68, -14, 38].forEach(function (y) { line(function () { g.moveTo(10, y); g.quadraticCurveTo(70, y + 4, 140, y + 14); }, 3); });
+  g.restore();
+}
+var L = 612, R = 924, Y = 440, D = 40;
+palmFist(L, Y);
+backFist(R, Y + D);
+// little fingers out of the BOTTOM of each fist, short, bent into hooks that lock together
+var y1 = Y + 86, y2 = Y + D + 86, xa = 790, xb = 746, FW = 42;
+tube(function () { g.moveTo(L + 40, y1); g.lineTo(xa - 6, y1); }, FW, SKIN);
+tube(function () { g.moveTo(R - 40, y2); g.lineTo(xb + 6, y2); }, FW, SKIN);
+tube(function () { g.moveTo(xa - 20, y1); g.quadraticCurveTo(xa + 14, y1, xa + 10, y1 + 32); g.quadraticCurveTo(xa + 4, y2 + 24, xa - 22, y2 + 28); }, FW, SKIN);
+tube(function () { g.moveTo(xb + 20, y2); g.quadraticCurveTo(xb - 14, y2, xb - 10, y2 - 32); g.quadraticCurveTo(xb - 4, y1 - 24, xb + 22, y1 - 28); }, FW, SKIN);
+document.title = 'ready';
+</script></body></html>

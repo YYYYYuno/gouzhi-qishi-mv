@@ -1,0 +1,6 @@
+REFERENCES: Image 1 is a POSE DIAGRAM. Image 2 is a previous attempt whose drawing style and sleeves are good, but its right-hand fist faces the wrong way (it shows the same side as the left one). Fix that by following Image 1. Image 3 (Xiao Ke) and Image 4 (DeepSeek) are the character designs, for colours.
+PALETTE: Xiao Ke's hand and sleeve use only warm cream #F0EEE6, pale apricot #F2C6A8, terracotta #D97757 and espresso #3B2620. DeepSeek's hand and sleeve use only warm cream #F0EEE6, pale periwinkle #B8C3F7, DeepSeek blue #4D6BFE and deep navy #1B1F4B. No other colours.
+KEEP from Image 2: the left hand (Xiao Ke's, palm side toward us, thumb folded across her curled fingers), the sleeves, cuffs, sizes and the drawing style.
+CHANGE the right hand (DeepSeek's, from the right edge): show the BACK of her hand instead - the smooth back of the hand with faint tendon lines, a row of rounded knuckles where her fingers fold, and her thumb hidden on the far side except a small tip peeking over the top. Her little finger still comes out of the bottom of her fist and hooks Xiao Ke's little finger in the small gap between the fists.
+LINE ART: thin even contour lines on both hands (espresso on Xiao Ke's, deep navy on DeepSeek's).
+FINGER COUNT: five per hand.

@@ -1,0 +1,6 @@
+REFERENCES: Image 1 is the finished pinky-swear illustration. Reproduce Image 1 EXACTLY - composition, sleeves, cuffs, hand positions, sizes, angles, colours, flat style, green background - with the corrections below.
+CORRECTION 1 - Xiao Ke's hand (upper hand, from the top, ruffled cuff, laced sleeve) shows one finger too many: give it exactly the thumb, THREE curled fingers and the extended little finger.
+CORRECTION 2 - Xiao Ke's little finger is ON TOP, curling down over DeepSeek's; DeepSeek's little finger (lower hand, from the bottom, navy sleeve, cream cuff with two navy buttons) is UNDERNEATH, curling up around Xiao Ke's.
+CORRECTION 3 - add thin, even contour lines around both hands and between every finger: espresso #3B2620 on Xiao Ke's hand, deep navy #1B1F4B on DeepSeek's.
+DeepSeek's hand keeps five fingers (thumb, three curled fingers, little finger).
+PALETTE: Xiao Ke's hand and sleeve: warm cream #F0EEE6, pale apricot #F2C6A8, terracotta #D97757, espresso #3B2620. DeepSeek's hand and sleeve: warm cream #F0EEE6, pale periwinkle #B8C3F7, DeepSeek blue #4D6BFE, deep navy #1B1F4B. No other colours.

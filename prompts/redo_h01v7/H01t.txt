@@ -1,0 +1,5 @@
+REFERENCES: Image 1 is an almost finished illustration of a pinky promise. Keep everything in it the same (layout, sleeves, cuffs, angles, sizes, colours, flat style, green background) and fix two details only.
+1. The upper hand (Xiao Ke's, coming down from the top edge, ruffled cuff and laced cream sleeve) has an extra finger. Count them: it must have one thumb, three curled fingers and one little finger. Redraw that fist with three curled fingers instead of four.
+2. The little fingers: Xiao Ke's little finger goes over the top and bends down, hooking DeepSeek's from above; DeepSeek's little finger (the lower hand, coming up from the bottom edge, navy sleeve and cream cuff with two buttons) bends up, hooking Xiao Ke's from below. Xiao Ke's finger is clearly the upper one.
+DeepSeek's hand keeps five fingers: thumb, three curled fingers, little finger.
+PALETTE: Xiao Ke's hand and sleeve: warm cream #F0EEE6, pale apricot #F2C6A8, terracotta #D97757, espresso #3B2620. DeepSeek's hand and sleeve: warm cream #F0EEE6, pale periwinkle #B8C3F7, DeepSeek blue #4D6BFE, deep navy #1B1F4B. No other colours.

@@ -1,0 +1,8 @@
+REFERENCES: Image 1 is a POSE DIAGRAM - follow its hand structure exactly. Image 2 shows the wanted drawing quality, line art, sleeves and fist size, BUT its two hands are wrongly drawn as mirror images; do not copy their orientation. Image 3 (Xiao Ke) and Image 4 (DeepSeek) are the character designs, for colours.
+PALETTE: Xiao Ke's hand and sleeve use only warm cream #F0EEE6, pale apricot #F2C6A8, terracotta #D97757 and espresso #3B2620. DeepSeek's hand and sleeve use only warm cream #F0EEE6, pale periwinkle #B8C3F7, DeepSeek blue #4D6BFE and deep navy #1B1F4B. No other colours.
+THE POSE: two girls facing each other make a pinky promise, both with their RIGHT hand; we see it from the side. The two hands are NOT mirror images of each other:
+- LEFT, Xiao Ke's hand (cream ruffled cuff, laced cream sleeve with espresso cross-lacing, from the left edge): we see its PALM SIDE. Her thumb is folded diagonally across the front of her curled index and middle fingers; the curled fingertips are tucked into the palm.
+- RIGHT, DeepSeek's hand (cream cuff with two navy buttons, navy sleeve, from the right edge): we see the BACK of her hand: a smooth back of the hand with two or three faint tendon lines and a row of rounded knuckles at the front. Her thumb is on the far side, hidden, only its tip peeking over the top of the fist.
+- The fists are close together. Both little fingers come out of the BOTTOM of the fists, short and natural, bent into small hooks that lock together in the narrow gap.
+LINE ART: thin, even contour lines on both hands and between the fingers (espresso on Xiao Ke's, deep navy on DeepSeek's). Slender, delicate, natural young women's hands.
+FINGER COUNT: five per hand.

@@ -1,0 +1,11 @@
+{
+  "name": "gouzhi-qishi-mv",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npx --yes hyperframes@0.9.10 preview",
+    "check": "npx --yes hyperframes@0.9.10 check",
+    "render": "npx --yes hyperframes@0.9.10 render"
+  }
+}

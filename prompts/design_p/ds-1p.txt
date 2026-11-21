@@ -1,0 +1,8 @@
+REFERENCES: Image 1 shows the rendering technique only. It is a different character: ignore her identity, colours, pose, circle and lettering. Image 2 is the design of DeepSeek. Copy her face, hairstyle, outfit and props, simplified into flat shapes.
+CHARACTER: 'DeepSeek', a girl who personifies a deep-sea blue whale. A young woman, a little shorter than average, earnest and polite, with gentle, slightly sleepy eyes. No animal ears. No text, no logos, no letters. Very long, voluminous, softly wavy hair whose lower part turns navy with a hard edge. One curled ahoge shaped like a little whale water-spout, and a small whale-tail hair clip. A modest maid-inspired dress: long sleeves with cuffs, a high collar, a calf-length skirt with a frilled hem, and an apron whose waist bow is shaped like whale tail flukes. A frilled headband, tights and Mary-Jane shoes. A slim fountain pen is clipped to her collar.
+PALETTE (exactly 4 colours):
+- warm cream #F0EEE6 (skin, apron, collar, cuffs, frills, tights, highlights)
+- pale periwinkle #B8C3F7 (light shadows on the cream parts, light hair highlights)
+- DeepSeek blue #4D6BFE (hair, accents)
+- deep navy #1B1F4B (the dress, darkest shadows, the lower hair, shoes, eyes)
+POSE: full body, standing, three-quarter view facing slightly to the right, hands clasped in front of her chest, looking at the viewer politely. The whole figure is visible from the top of the ahoge to the shoes.

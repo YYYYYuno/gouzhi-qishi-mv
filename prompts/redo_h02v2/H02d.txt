@@ -1,0 +1,4 @@
+REFERENCES: Image 1 is the approved pinky-swear close-up. Copy the two hands from Image 1 unchanged (pose, finger count, contour lines, sleeves, cuffs, layout). Image 2 (Xiao Ke) and Image 3 (DeepSeek) are the character designs, for colours only.
+PALETTE: Xiao Ke's hand, sleeve and hair use only warm cream #F0EEE6, pale apricot #F2C6A8, terracotta #D97757 and espresso #3B2620. DeepSeek's hand, sleeve and hair use only warm cream #F0EEE6, pale periwinkle #B8C3F7, DeepSeek blue #4D6BFE and deep navy #1B1F4B. No other colours.
+SCENE: underwater. Two or three wide, flat ribbons of hair drift across the picture behind the arms: terracotta-orange from the upper left, blue from the lower right. Xiao Ke's ruffled cuff and DeepSeek's sleeve billow slightly as if floating. The hair stays behind the hands and never covers any finger.
+FINGER COUNT: thumb on top, three curled fingers, one hooked little finger: exactly five per hand, exactly as in Image 1.

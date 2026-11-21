@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#fff;overflow:hidden}canvas{display:block}</style>
+</head><body><canvas id="c" width="1536" height="1024"></canvas>
+<script>
+// Pose diagram for the pinky-swear redraw: two upright fists facing each other, thumbs on top,
+// three curled fingers stacked on the front, ONLY the little finger (bottom of each fist) extended and hooked.
+var c = document.getElementById('c'), g = c.getContext('2d');
+var INK = '#2B2B2B', SKIN = '#F4F1EA', SH = '#D9D4C8', LW = 7;
+g.fillStyle = '#FFFFFF'; g.fillRect(0, 0, 1536, 1024);
+
+function rr(x, y, w, h, r) { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+function shape(fill) { g.fillStyle = fill; g.fill(); g.lineWidth = LW; g.strokeStyle = INK; g.stroke(); }
+function tube(pts, w, fill) { // an outlined finger: thick ink line, then a thinner skin line on top
+  g.lineCap = 'round'; g.lineJoin = 'round';
+  [[w + LW * 2, INK], [w, fill]].forEach(function (s) {
+    g.beginPath(); g.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) g.lineTo(pts[i][0], pts[i][1]);
+    g.lineWidth = s[0]; g.strokeStyle = s[1]; g.stroke();
+  });
+}
+// local frame: wrist on the left (x<0), finger side on the right (x>0); mirrored for the other hand
+function fist(cx, cy, dir, sleeve, cuff) {
+  g.save(); g.translate(cx, cy); g.scale(dir, 1);
+  // sleeve + cuff, running off the image edge
+  rr(-900, -100, 640, 200, 10); shape(sleeve);
+  rr(-300, -112, 120, 224, 18); shape(cuff);
+  // back of the fist / palm block
+  rr(-200, -118, 250, 236, 70); shape(SKIN);
+  // three curled fingers stacked on the front: index (top), middle, ring
+  [-112, -52, 8].forEach(function (y, i) { rr(-10, y, 150, 58, 29); shape(i === 1 ? SKIN : SKIN); });
+  // the thumb lies across the top, from the wrist over the index finger
+  tube([[-150, -118], [-40, -112], [70, -92]], 50, SKIN);
+  g.restore();
+}
+function path(fn, w, fill) {
+  g.lineCap = 'round'; g.lineJoin = 'round';
+  [[w + LW * 2, INK], [w, fill]].forEach(function (s) { g.beginPath(); fn(); g.lineWidth = s[0]; g.strokeStyle = s[1]; g.stroke(); });
+}
+var L = 560, R = 976, Y = 430, CX = 768, RAD = 30;
+fist(L, Y, 1, '#8A8A8A', '#CFCFCF');
+fist(R, Y + 46, -1, '#3A3A3A', '#CFCFCF');
+var y1 = Y + 92, y2 = Y + 46 + 92 - 0; // the two little fingers, each from the BOTTOM of its own fist
+// right little finger: out of its fist toward the left, then curls UP into a hook
+var rightP = function () { g.moveTo(R - 40, y2); g.lineTo(CX + 14, y2); g.arc(CX + 14, y2 - RAD, RAD, Math.PI / 2, Math.PI * 1.45, false); };
+// left little finger: out of its fist toward the right, then curls DOWN into a hook, through the right one
+var leftP = function () { g.moveTo(L + 40, y1); g.lineTo(CX - 14, y1); g.arc(CX - 14, y1 + RAD, RAD, -Math.PI / 2, Math.PI * 0.45, false); };
+path(rightP, 38, SKIN);
+path(leftP, 38, SKIN);
+// the right hook's tip passes in front of the left finger, so they read as linked
+path(function () { g.arc(CX + 14, y2 - RAD, RAD, Math.PI * 1.1, Math.PI * 1.45, false); }, 38, SKIN);
+document.title = 'ready';
+</script></body></html>

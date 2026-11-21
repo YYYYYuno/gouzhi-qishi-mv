@@ -1,0 +1,29 @@
+// S52 · bars 108–110 · the shortest prompt ever, and not self-contained at all. Into the sea it goes
+var emptyHands = GX.erase(pose('C02'), [[928, 688, 990, 677, 1022, 728, 957, 764, 926, 722]]);
+SCENE(function (g, t, T) {
+  var fl = 760, hx = 1170, hy = 860, drop = GX.bar(110);
+  var follow = GX.E.inOut3(GX.at(T, drop + 0.1, 1.1));
+  g.save();
+  GX.cam(g, { z: 1 + follow * 1.5, cx: hx, cy: hy, y: -follow * 120 });
+  WD.interior(g, { floor: fl, dim: true, seed: 24, empty: true });
+  var glow = GX.at(T, drop + 0.7, 0.5) * (0.7 + 0.3 * GX.pulse(T, 0.2));
+  WD.hole(g, hx, hy, 210, 56, { T: T, glow: glow });
+  var r = GX.cut(g, T < drop ? pose('C02') : emptyHands, { x: 760, y: 806, h: 640, ay: 1 });
+  if (r) {
+    var sx = r.x + r.w * 0.906, sy = r.y + r.h * 0.705, f = GX.at(T, drop, 0.62), fe = GX.E.in3(f);
+    if (f > 0 && f < 1) {
+      var px = GX.lerp(sx, hx, GX.E.out2(f)), py = GX.lerp(sy, hy, fe), s = 1 - 0.55 * fe;
+      g.save(); g.translate(px, py); g.rotate(f * 2.4); g.scale(s, s);
+      GX.rect(g, P.cream, -46, -30, 92, 60); GX.poly(g, P.apricot, [-46, -30, 46, -30, 0, 6]); g.restore();
+    }
+    if (f >= 1) WD.ripples(g, hx, hy, T - drop, { s: 0.6, speed: 0.9, n: 2, alpha: 1 - GX.at(T, drop + 1.2, 0.6) });
+  }
+  g.restore();
+  var cardOut = GX.at(T, drop - 0.3, 0.3);
+  if (cardOut < 1) {
+    g.save(); g.globalAlpha = 1 - cardOut;
+    GX.text(g, 'prompt.txt · 9 tokens', 1210, 150, { size: 28, font: 'mono', color: P.grey });
+    WD.paper(g, 1200, 180, 600, 240, [{ s: '你好，我是小克。', c: P.terra }], { p: GX.at(T, GX.bar(108) + 0.3, 1.2), rot: 0.02, size: 44 });
+    g.restore();
+  }
+});

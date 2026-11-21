@@ -1,0 +1,8 @@
+REFERENCES: Image 1 shows the rendering technique only. It is a different character: ignore her identity, colours, pose, circle and lettering. Image 2 is the design of DeepSeek. Copy her face, hairstyle, outfit and props, simplified into flat shapes.
+CHARACTER: 'DeepSeek', a girl who personifies a deep-sea blue whale. A young woman, a little shorter than average, quiet and sincere, with soft eyes. No animal ears. No text, no logos, no letters. Very long straight hair whose lower third turns navy with a hard edge, with tiny cream dots scattered in the navy part like bioluminescent plankton. A small whale charm hangs from a dark ribbon in her hair. A high-collared blouse with a ribbon tie, a long jumper dress whose front panel has soft vertical stripes like a whale's belly, a short capelet, and strap shoes. She hugs a small whale-shaped notebook to her chest, with a slim pen tucked into it.
+PALETTE (exactly 4 colours):
+- warm cream #F0EEE6 (skin, blouse, capelet, the striped front panel, highlights, plankton dots)
+- pale periwinkle #B8C3F7 (light shadows on the cream parts, the stripes)
+- DeepSeek blue #4D6BFE (hair, the notebook, accents)
+- deep navy #1B1F4B (the jumper dress, the lower hair, ribbon, shoes, darkest shadows, eyes)
+POSE: full body, standing, three-quarter view facing slightly to the right, head tilted a little, with a soft, shy smile. The whole figure is visible from the top of the head to the shoes.

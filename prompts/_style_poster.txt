@@ -1,0 +1,6 @@
+ART STYLE (style P, follow exactly): minimalist flat vector anime illustration in the manner of a screen-printed poster, made to be cut out and composited into a motion-graphics music video.
+- A strictly limited 4-colour palette, given in the character description. No other colours at all: no extra tints, no skin pink, no grey.
+- No outlines, no lineart, no gradients, no texture, no soft shading. Every form is built from flat, hard-edged colour shapes. Shadows are solid dark shapes; highlights are cream negative space.
+- Hair is drawn as a few big, sweeping, flat strands with sharp tapered tips. The face is simple and elegant, with small flat eyes and a few sharp shapes.
+- Details such as frills, flowers, buttons and chains are kept, but simplified into clean graphic shapes.
+BACKGROUND (very important): a perfectly flat, solid pure green (#00FF00) fill from edge to edge. No circle, no frame, no lettering, no symbol, no floor, no ground shadow, no gradient, no particles, no signature. Do not use any green on the character. The whole figure, including every hair tip, fits inside the image with clear green margin on all sides so it can be keyed out cleanly.
